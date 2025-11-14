@@ -21,7 +21,23 @@
       </div>
       <nav class="nav">
         <ul class="nav-list">
+          <button class="snipcart-checkout">
+            🛒 Carrinho
+            <span class="snipcart-items-count"></span>
+          </button>
+
           <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><button class="snipcart-checkout">🛒 Abrir Carrinho</button></li>
+          <li><button
+  class="snipcart-add-item"
+  data-item-id="teste123"
+  data-item-name="Consulta Teste"
+  data-item-price="10.00"
+  data-item-url="/"
+>
+  Adicionar Produto de Teste
+</button>
+</li>
           <li><a href="#sobre" class="nav-link">Sobre</a></li>
           <li><a href="#servicos" class="nav-link">Serviços</a></li>
           <li><a href="#contacto" class="nav-link btn-nav">Contacto</a></li>
@@ -279,5 +295,13 @@
 
   <!-- Container obrigatório do Snipcart -->
   <div hidden id="snipcart"></div>
+<script>
+  window.SnipcartSettings = {
+    publicApiKey: "AQUI_A_TUA_PUBLIC_API_KEY",
+    loadStrategy: "on-user-interaction"
+  };
+</script>
+<script async src="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.js"></script>
+
 </body>
 </html>
