@@ -585,4 +585,37 @@ textarea:focus {
   .header-content {
     padding: 0.5rem 0;
   }
+
+  /* Mudar fundo do overlay do carrinho */
+.snipcart-modal__container {
+  background: rgba(255, 245, 250, 0.95);
+}
+
+/* Cor principal dos botões do Snipcart */
+.snipcart-button-primary,
+.snipcart-base-button--highlight {
+  background-color: #ff5c9a;
+  border-color: #ff5c9a;
+}
+
+.snipcart-button-primary:hover,
+.snipcart-base-button--highlight:hover {
+  background-color: #ff3d88;
+}
+
+/* Cor dos links e detalhes */
+.snipcart__font--primary,
+.snipcart__font--secondary {
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.snipcart-cart-header,
+.snipcart-cart__footer {
+  background: #ffe6f1;
+}
+
+.snipcart-item-line__title {
+  color: #412433;
+}
+
 }
