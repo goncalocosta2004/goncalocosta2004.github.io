@@ -63,19 +63,36 @@ if (scrollTopBtn) {
   });
 }
 
-// Formulário de contacto (simulação)
+// Formulário de contacto com envio assíncrono para evitar redirecionamento
 const contactForm = document.getElementById("contactForm");
 const formFeedback = document.getElementById("formFeedback");
 
 if (contactForm && formFeedback) {
-  contactForm.addEventListener("submit", (e) => {
+  contactForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // Aqui poderás integrar com email, backend, etc.
-    formFeedback.textContent = "Obrigado pela sua mensagem. Entraremos em contacto brevemente.";
-    formFeedback.style.color = "#2e7d32";
+    formFeedback.textContent = "A enviar...";
+    formFeedback.style.color = "#444";
 
-    contactForm.reset();
+    try {
+      const response = await fetch(contactForm.action, {
+        method: "POST",
+        body: new FormData(contactForm),
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        formFeedback.textContent = "Obrigado pela sua mensagem. Entraremos em contacto brevemente.";
+        formFeedback.style.color = "#2e7d32";
+        contactForm.reset();
+      } else {
+        formFeedback.textContent = "Não foi possível enviar a mensagem. Tente novamente mais tarde.";
+        formFeedback.style.color = "#b00020";
+      }
+    } catch (error) {
+      formFeedback.textContent = "Ocorreu um erro de ligação. Verifique a sua internet e tente de novo.";
+      formFeedback.style.color = "#b00020";
+    }
 
     setTimeout(() => {
       formFeedback.textContent = "";
