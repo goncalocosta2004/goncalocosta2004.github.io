@@ -99,3 +99,36 @@ if (contactForm && formFeedback) {
     }, 6000);
   });
 }
+
+// Botões de marcação dos terapeutas
+const bookingButtons = document.querySelectorAll(".booking-btn");
+
+// Mapa de terapeutas com links de marcação (configure aqui os links dos terapeutas)
+const therapistBookingLinks = {
+  "Elsa Costa": "https://buk.pt/ama-te-espaco-terapeutico/elsa-costa-ama-te-espaco-terapeutico",
+  "Ana Ferreira": "https://buk.pt/ama-te-espaco-terapeutico/elsa-costa-ama-te-espaco-terapeutico",
+  "Bruno Silva": "https://api.whatsapp.com/qr/LMOFJWEK2IWZO1?autoload=1&app_absent=0",
+  "Sylvie Santos": "https://api.whatsapp.com/message/UOZGWUCW46L7D1?autoload=1&app_absent=0",
+  "Cristina Parii": "https://buk.pt/ama-te-espaco-terapeutico/cristina-parii",
+  "João Castro": "https://buk.pt/ama-te-espaco-terapeutico/joao-castro",
+  "Patrícia Robalo": "https://api.whatsapp.com/send/?phone=966753083&text&type=phone_number&app_absent=0",
+};
+
+bookingButtons.forEach((btn) => {
+  const therapist = btn.getAttribute("data-therapist");
+  const bookingLink = therapistBookingLinks[therapist];
+
+  if (bookingLink && bookingLink !== "#") {
+    btn.href = bookingLink;
+    btn.target = "_blank";
+    btn.rel = "noopener noreferrer";
+  } else {
+    // Se não houver link configurado, redireciona para contacto
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      alert(`Para marcar uma sesão com ${therapist}, por favor contacte-nos através do formulário de contacto ou pelo telefone.`);
+      document.getElementById("contacto").scrollIntoView({ behavior: "smooth" });
+    });
+  }
+});
+

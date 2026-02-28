@@ -73,6 +73,14 @@ body {
   font-size: 1.2rem;
 }
 
+.logo-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 .logo-icon {
   width: 32px;
   height: 32px;
@@ -579,14 +587,190 @@ textarea:focus {
   transform: translateY(-2px);
 }
 
-/* Responsivo */
+/* Sobre Expandido */
+
+.section-text-expanded {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-text-expanded h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #412433;
+  text-align: center;
+}
+
+.section-text-expanded p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
+.mission-values-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.mission-box {
+  background: #fff;
+  border-radius: 18px;
+  padding: 1.6rem 1.4rem;
+  border: 1px solid rgba(255, 182, 210, 0.6);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.03);
+}
+
+.mission-box h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #412433;
+}
+
+.mission-note {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--color-accent-strong);
+  font-style: italic;
+}
+
+/* Abordagem */
+
+.approach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.approach-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.4rem 1.2rem;
+  border: 1px solid rgba(255, 182, 210, 0.6);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.03);
+  text-align: center;
+}
+
+.approach-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  font-size: 1.05rem;
+  color: #412433;
+}
+
+.approach-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Equipa de Terapeutas */
+
+.therapists-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.therapist-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 2rem 1.6rem;
+  border: 1px solid rgba(255, 182, 210, 0.6);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.therapist-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+.therapist-header {
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.therapist-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 0.8rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 3px solid rgba(255, 182, 210, 0.3);
+}
+
+.therapist-card h3 {
+  margin: 0 0 0.3rem; 
+  font-size: 1.2rem;
+  color: #412433;
+}
+
+.therapist-role {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-accent-strong);
+  font-weight: 600;
+}
+
+.therapist-therapies {
+  flex-grow: 1;
+  margin-bottom: 1.2rem;
+}
+
+.therapist-therapies p {
+  margin: 0 0 0.6rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #412433;
+}
+
+.therapist-therapies ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.therapist-therapies li {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.4rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.therapist-therapies li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: bold;
+}
+
+.btn-sm {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  width: 100%;
+  text-align: center;
+}
 
 @media (max-width: 900px) {
   .hero-content,
   .section-grid,
   .services-grid,
   .gallery-grid,
-  .contact-grid {
+  .contact-grid,
+  .mission-values-grid,
+  .approach-grid,
+  .therapists-grid {
     grid-template-columns: 1fr;
   }
 
@@ -601,6 +785,14 @@ textarea:focus {
   .gallery-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .approach-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .therapists-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 720px) {
@@ -609,6 +801,10 @@ textarea:focus {
   }
 
   .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .therapists-grid {
     grid-template-columns: 1fr;
   }
 
