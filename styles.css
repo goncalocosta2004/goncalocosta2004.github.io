@@ -71,11 +71,18 @@ body {
   gap: 0.5rem;
   font-weight: 600;
   font-size: 1.2rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--transition);
+}
+
+.logo:hover {
+  transform: scale(1.05);
 }
 
 .logo-image {
-  width: 40px;
-  height: 40px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -168,6 +175,7 @@ body {
   border: none;
   padding: 0;
   cursor: pointer;
+  margin-left: auto;
 }
 
 .nav-toggle span {
