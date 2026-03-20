@@ -588,6 +588,14 @@
             <textarea id="mensagem" name="mensagem" rows="5" required placeholder="Descreva a sua situa&ccedil;&atilde;o ou pedido de apoio."></textarea>
           </div>
           <p class="form-note">Campos marcados com * s&atilde;o de preenchimento obrigat&oacute;rio.</p>
+          <label class="privacy-check">
+            <input type="checkbox" name="privacy_acknowledged" required />
+            <span>
+              Li a
+              <button type="button" class="inline-policy-link" data-open-privacy="true">Pol&iacute;tica de Privacidade e Cookies</button>
+              e compreendo como os meus dados s&atilde;o tratados.
+            </span>
+          </label>
           <button type="submit" class="btn btn-primary btn-full">Enviar Mensagem</button>
           <p id="formFeedback" class="form-feedback" aria-live="polite"></p>
         </form>
@@ -602,8 +610,163 @@
       <p class="footer-small">
         Ama-te Espa&ccedil;o Terapêutico com servi&ccedil;os de Doula por marca&ccedil;&atilde;o. Cuidado consciente e integrativo.
       </p>
+      <div class="footer-legal-links">
+        <button type="button" class="footer-link-button" data-open-privacy="true">Privacidade e Cookies</button>
+        <button type="button" class="footer-link-button" data-open-cookie-settings="true">Gerir consentimento</button>
+      </div>
     </div>
   </footer>
+
+  <button class="privacy-fab" type="button" aria-label="Abrir privacidade e cookies" data-open-privacy="true">
+    Privacidade e Cookies
+  </button>
+
+  <section class="cookie-banner" id="cookieBanner" aria-label="Aviso de cookies" hidden>
+    <div class="cookie-banner-card">
+      <div class="cookie-banner-copy">
+        <p class="cookie-eyebrow">Privacidade do site</p>
+        <h2>Escolha o seu n&iacute;vel de consentimento</h2>
+        <p>
+          Este site deve recolher consentimento pr&eacute;vio para cookies n&atilde;o necess&aacute;rios. Por defeito,
+          apenas mantemos os elementos estritamente necess&aacute;rios e guardamos a sua escolha para poder respeit&aacute;-la.
+        </p>
+      </div>
+      <div class="cookie-banner-actions">
+        <button type="button" class="btn btn-outline cookie-action" data-consent-action="reject">Recusar n&atilde;o essenciais</button>
+        <button type="button" class="btn btn-outline cookie-action" data-open-cookie-settings="true">Personalizar</button>
+        <button type="button" class="btn btn-primary cookie-action" data-consent-action="accept">Aceitar cookies opcionais</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="privacy-modal" id="privacyModal" aria-hidden="true" hidden>
+    <div class="privacy-modal__backdrop" data-close-privacy="true"></div>
+    <div class="privacy-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle">
+      <button type="button" class="privacy-modal__close" aria-label="Fechar janela de privacidade" data-close-privacy="true">&times;</button>
+      <div class="privacy-modal__content">
+        <p class="cookie-eyebrow">Pol&iacute;tica de Privacidade e Cookies</p>
+        <h2 id="privacyModalTitle">Transpar&ecirc;ncia sobre dados e consentimento</h2>
+        <p class="policy-updated">Atualizado em 20 de mar&ccedil;o de 2026.</p>
+
+        <section class="policy-section">
+          <h3>1. Respons&aacute;vel pelo tratamento</h3>
+          <p>
+            O respons&aacute;vel pelo tratamento dos dados pessoais recolhidos atrav&eacute;s deste website &eacute; o
+            <strong>Ama-te Espa&ccedil;o Terap&ecirc;utico</strong>.
+          </p>
+          <p>
+            Contactos: <a href="mailto:contacto@enfermeiraelsacosta.com">contacto@enfermeiraelsacosta.com</a>
+            e +351 913 929 009.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h3>2. Que dados podem ser tratados</h3>
+          <p>
+            Quando usa o formul&aacute;rio de contacto, podemos tratar nome, email, telefone, assunto e o conte&uacute;do da mensagem.
+            Quando navega no site, podem ainda existir dados t&eacute;cnicos como endere&ccedil;o IP, tipo de dispositivo, registos
+            do navegador e a sua escolha de consentimento.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h3>3. Finalidades e base jur&iacute;dica</h3>
+          <p>
+            Os dados do formul&aacute;rio s&atilde;o usados para responder ao seu pedido, efetuar dilig&ecirc;ncias pr&eacute;-contratuais
+            ou gerir contactos relacionados com os servi&ccedil;os do espa&ccedil;o. A base jur&iacute;dica &eacute;, consoante o caso,
+            a execu&ccedil;&atilde;o de dilig&ecirc;ncias pr&eacute;-contratuais a seu pedido, a execu&ccedil;&atilde;o contratual ou o interesse leg&iacute;timo
+            em gerir comunica&ccedil;&otilde;es do website.
+          </p>
+          <p>
+            Cookies ou tecnologias n&atilde;o essenciais s&oacute; devem ser ativados ap&oacute;s um ato positivo claro do utilizador.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h3>4. Cookies e tecnologias semelhantes</h3>
+          <div class="cookie-preferences">
+            <article class="cookie-preference-card">
+              <div>
+                <h4>Necess&aacute;rios</h4>
+                <p>Garantem seguran&ccedil;a, funcionamento base do site e mem&oacute;ria da sua escolha de consentimento.</p>
+              </div>
+              <label class="switch" aria-label="Cookies necessarios sempre ativos">
+                <input type="checkbox" checked disabled />
+                <span class="switch-slider"></span>
+              </label>
+            </article>
+
+            <article class="cookie-preference-card">
+              <div>
+                <h4>Estat&iacute;stica</h4>
+                <p>Reservado para medi&ccedil;&atilde;o de audi&ecirc;ncias ou anal&iacute;tica. Mant&eacute;m-se desligado at&eacute; autoriza&ccedil;&atilde;o.</p>
+              </div>
+              <label class="switch" aria-label="Ativar cookies estatisticos">
+                <input type="checkbox" id="analyticsConsent" data-consent-category="analytics" />
+                <span class="switch-slider"></span>
+              </label>
+            </article>
+
+            <article class="cookie-preference-card">
+              <div>
+                <h4>Marketing</h4>
+                <p>Reservado para publicidade, pixels ou re-marketing. Mant&eacute;m-se desligado at&eacute; autoriza&ccedil;&atilde;o.</p>
+              </div>
+              <label class="switch" aria-label="Ativar cookies de marketing">
+                <input type="checkbox" id="marketingConsent" data-consent-category="marketing" />
+                <span class="switch-slider"></span>
+              </label>
+            </article>
+          </div>
+          <p class="policy-note">
+            Neste momento, o site n&atilde;o ativa por defeito categorias estat&iacute;sticas ou de marketing. Se no futuro vierem a ser
+            adicionadas, ficar&atilde;o condicionadas &agrave; sua escolha nesta &aacute;rea.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h3>5. Servi&ccedil;os de terceiros</h3>
+          <p>
+            O website pode encaminhar para servi&ccedil;os externos como Formspree (formul&aacute;rio de contacto), WhatsApp,
+            Buk, Linktree e Google Fonts. Esses fornecedores podem tratar dados t&eacute;cnicos necess&aacute;rios ao carregamento
+            ou ao envio do formul&aacute;rio, de acordo com as suas pr&oacute;prias pol&iacute;ticas.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h3>6. Conserva&ccedil;&atilde;o</h3>
+          <p>
+            Os dados de contacto s&atilde;o conservados apenas pelo tempo necess&aacute;rio para responder ao pedido, cumprir obriga&ccedil;&otilde;es
+            legais e manter hist&oacute;rico razo&aacute;vel de atendimento. A sua escolha de consentimento &eacute; guardada localmente no
+            navegador at&eacute; ser alterada ou apagada por si.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h3>7. Direitos do titular</h3>
+          <p>
+            Pode pedir acesso, retifica&ccedil;&atilde;o, apagamento, limita&ccedil;&atilde;o, oposi&ccedil;&atilde;o e portabilidade nos termos do RGPD.
+            Tamb&eacute;m pode retirar o consentimento a qualquer momento, sem afetar a licitude do tratamento anterior,
+            e apresentar reclama&ccedil;&atilde;o &agrave; CNPD.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h3>8. Como alterar a sua escolha</h3>
+          <p>
+            Pode reabrir esta janela atrav&eacute;s do bot&atilde;o "Privacidade e Cookies" ou do link "Gerir consentimento"
+            no rodap&eacute;. A recusa e a altera&ccedil;&atilde;o posterior devem ser t&atilde;o simples como a aceita&ccedil;&atilde;o.
+          </p>
+        </section>
+
+        <div class="privacy-modal__actions">
+          <button type="button" class="btn btn-outline" data-consent-action="reject">Recusar n&atilde;o essenciais</button>
+          <button type="button" class="btn btn-outline" data-save-cookie-settings="true">Guardar prefer&ecirc;ncias</button>
+          <button type="button" class="btn btn-primary" data-consent-action="accept">Aceitar todos os opcionais</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <button class="scroll-top" aria-label="Voltar ao topo">
     &uarr;

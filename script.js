@@ -132,3 +132,180 @@ bookingButtons.forEach((btn) => {
   }
 });
 
+const CONSENT_STORAGE_KEY = "amate_cookie_consent_v1";
+const defaultConsent = {
+  necessary: true,
+  analytics: false,
+  marketing: false,
+  updatedAt: null,
+};
+
+const cookieBanner = document.getElementById("cookieBanner");
+const privacyModal = document.getElementById("privacyModal");
+const consentCategoryInputs = document.querySelectorAll("[data-consent-category]");
+const openPrivacyButtons = document.querySelectorAll("[data-open-privacy]");
+const openCookieSettingsButtons = document.querySelectorAll("[data-open-cookie-settings]");
+const closePrivacyButtons = document.querySelectorAll("[data-close-privacy]");
+const consentActionButtons = document.querySelectorAll("[data-consent-action]");
+const saveCookieSettingsButton = document.querySelector("[data-save-cookie-settings]");
+
+function readStoredConsent() {
+  try {
+    const storedValue = window.localStorage.getItem(CONSENT_STORAGE_KEY);
+    if (!storedValue) return null;
+
+    const parsedValue = JSON.parse(storedValue);
+    return {
+      ...defaultConsent,
+      ...parsedValue,
+      necessary: true,
+    };
+  } catch (error) {
+    return null;
+  }
+}
+
+function writeStoredConsent(consent) {
+  const normalizedConsent = {
+    ...defaultConsent,
+    ...consent,
+    necessary: true,
+    updatedAt: new Date().toISOString(),
+  };
+
+  try {
+    window.localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(normalizedConsent));
+  } catch (error) {
+    return normalizedConsent;
+  }
+
+  return normalizedConsent;
+}
+
+function applyConsentToInputs(consent) {
+  consentCategoryInputs.forEach((input) => {
+    const category = input.dataset.consentCategory;
+    input.checked = Boolean(consent[category]);
+  });
+}
+
+function publishConsentState(consent) {
+  window.cookieConsent = {
+    ...consent,
+    canUse(category) {
+      if (category === "necessary") return true;
+      return Boolean(consent[category]);
+    },
+  };
+
+  window.dispatchEvent(
+    new CustomEvent("cookieconsentchange", {
+      detail: consent,
+    })
+  );
+}
+
+function showCookieBanner(shouldShow) {
+  if (!cookieBanner) return;
+  cookieBanner.hidden = !shouldShow;
+}
+
+function setPrivacyModalOpen(isOpen) {
+  if (!privacyModal) return;
+
+  privacyModal.hidden = !isOpen;
+  privacyModal.setAttribute("aria-hidden", String(!isOpen));
+  document.body.style.overflow = isOpen ? "hidden" : "";
+}
+
+function saveConsent(consent) {
+  const savedConsent = writeStoredConsent(consent);
+  applyConsentToInputs(savedConsent);
+  publishConsentState(savedConsent);
+  showCookieBanner(false);
+  return savedConsent;
+}
+
+function handleConsentAction(action) {
+  if (action === "accept") {
+    saveConsent({
+      analytics: true,
+      marketing: true,
+    });
+    setPrivacyModalOpen(false);
+    return;
+  }
+
+  if (action === "reject") {
+    saveConsent({
+      analytics: false,
+      marketing: false,
+    });
+    setPrivacyModalOpen(false);
+  }
+}
+
+const storedConsent = readStoredConsent();
+applyConsentToInputs(storedConsent || defaultConsent);
+publishConsentState(storedConsent || defaultConsent);
+showCookieBanner(!storedConsent);
+
+openPrivacyButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const currentConsent = readStoredConsent() || defaultConsent;
+    applyConsentToInputs(currentConsent);
+    setPrivacyModalOpen(true);
+  });
+});
+
+openCookieSettingsButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const currentConsent = readStoredConsent() || defaultConsent;
+    applyConsentToInputs(currentConsent);
+    setPrivacyModalOpen(true);
+  });
+});
+
+closePrivacyButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    setPrivacyModalOpen(false);
+  });
+});
+
+if (privacyModal) {
+  privacyModal.addEventListener("click", (event) => {
+    if (event.target instanceof HTMLElement && event.target.matches("[data-close-privacy]")) {
+      setPrivacyModalOpen(false);
+    }
+  });
+}
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && privacyModal && !privacyModal.hidden) {
+    setPrivacyModalOpen(false);
+  }
+});
+
+consentActionButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    handleConsentAction(button.dataset.consentAction);
+  });
+});
+
+if (saveCookieSettingsButton) {
+  saveCookieSettingsButton.addEventListener("click", () => {
+    const customConsent = {
+      analytics: false,
+      marketing: false,
+    };
+
+    consentCategoryInputs.forEach((input) => {
+      const category = input.dataset.consentCategory;
+      customConsent[category] = input.checked;
+    });
+
+    saveConsent(customConsent);
+    setPrivacyModalOpen(false);
+  });
+}
+
