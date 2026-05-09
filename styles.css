@@ -255,9 +255,9 @@ body {
 
 .btn-outline {
   display: flex;
-  background: transparent;
+  background: #ff3d88;
   border-color: var(--color-accent);
-  color: var(--color-accent-strong);
+  color: #fff;
 }
 
 .btn-outline:hover {
@@ -269,6 +269,119 @@ body {
 }
 
 /* Hero Illustration */
+/* HERO VIDEO */
+
+.hero-video {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.hero-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 10, 20, 0.45);
+  backdrop-filter: blur(2px);
+}
+
+.hero-video-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.3fr 0.8fr;
+  gap: 3rem;
+  align-items: center;
+  padding: 5rem 0;
+}
+
+.hero-glass-box {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(12px);
+  padding: 2.5rem;
+  border-radius: 30px;
+  color: white;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+.hero-glass-box h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.hero-glass-box p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.92);
+}
+
+.hero-highlight {
+  margin-top: 1.5rem;
+  background: rgba(255,255,255,0.12);
+  padding: 1rem;
+  border-radius: 18px;
+  backdrop-filter: blur(8px);
+}
+
+.hero-highlight p {
+  margin: 0.4rem 0;
+}
+
+.hero-side-card {
+  background: rgba(255,255,255,0.16);
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(12px);
+  padding: 2rem;
+  border-radius: 28px;
+  color: white;
+}
+
+.hero-side-card h2 {
+  color: white;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.hero-side-card ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.hero-side-card li {
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
+}
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+  .hero-video-content {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-glass-box,
+  .hero-side-card {
+    padding: 1.5rem;
+  }
+
+  .hero-glass-box h1 {
+    font-size: 2.2rem;
+  }
+}
 
 .hero-illustration {
   display: flex;
@@ -445,6 +558,13 @@ body {
   width: 100%;
   height: 220px;
   object-fit: contain;
+  display: block;
+}
+
+.gallery-card video {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
   display: block;
 }
 
