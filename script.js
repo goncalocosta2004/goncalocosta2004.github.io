@@ -4,6 +4,12 @@ document.addEventListener("DOMContentLoaded", () => {
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
   }
+
+  const heroVideo = document.querySelector(".hero-bg-video");
+  if (heroVideo) {
+    const playbackRate = Number(heroVideo.dataset.playbackRate) || 1;
+    heroVideo.playbackRate = playbackRate;
+  }
 });
 
 // Menu mobile
