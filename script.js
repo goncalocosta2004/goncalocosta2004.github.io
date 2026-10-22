@@ -118,6 +118,7 @@ const therapistBookingLinks = {
   "Cristina Parii": "https://buk.pt/ama-te-espaco-terapeutico/cristina-parii",
   "João Castro": "https://buk.pt/ama-te-espaco-terapeutico/joao-castro",
   "Patrícia Robalo": "https://api.whatsapp.com/send/?phone=966753083&text&type=phone_number&app_absent=0",
+  "Vanessa Severino":"https://widget.treatwell.pt/estabelecimento/ama-te-head-spa-terapeutico-odivelas/",
 };
 
 bookingButtons.forEach((btn) => {
